@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="admin/fragments/template.html :: head">
+</head>
+<body>
+	<div th:insert="admin/fragments/template.html :: userdetails">
+	</div>
+	<h1>TrePerDay</h1>
+	<ul th:insert="admin/fragments/template.html :: nav"></ul>
+	<h2 th:text="${title}"></h2>
+	<form th:object="${userregistrationform}" th:action="@{/admin/user/create}" action="#" method="post">
+		<div class="form-group">
+			<label for="lastName">Last name</label>
+			<input type="text" th:field="*{lastName}" class="form-control" id="lastname" placeholder="Last name">
+		</div>
+		<div class="form-group">
+			<label for="firstName">First name</label>
+			<input type="text" th:field="*{firstName}" class="form-control" id="firstname" placeholder="First name">
+		</div>
+		<div class="form-group">
+			<label for="username">Username</label>
+			<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Please check the username</p>
+			<input type="text" th:field="*{username}" class="form-control" id="username" placeholder="Username">
+		</div>
+		<div class="form-group">
+			<label for="password1">Password</label>
+			<input type="password" th:field="*{password}" class="form-control" id="password1" placeholder="Password">
+		</div>
+		<div class="form-group">
+			<label for="password2">Password again</label>
+			<p th:if="${#fields.hasErrors('passwordVerify')}" th:errors="*{passwordVerify}">Passwords do not match!</p>
+			<input type="password" th:field="*{passwordVerify}" class="form-control" id="password2" placeholder="Password again">
+		</div>
+		<div class="form-group">
+			<label for="role">Role</label>
+			<select class="form-control" th:field="*{role}" id="role">
+				<option value="API_USER">API user</option>
+				<option value="ADMIN">Admin</option>
+			</select>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</body>
+</html>

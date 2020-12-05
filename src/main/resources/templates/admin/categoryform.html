@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="admin/fragments/template.html :: head">
+</head>
+<body>
+	<div th:insert="admin/fragments/template.html :: userdetails">
+	</div>
+	<h1>TrePerDay</h1>
+	<ul th:insert="admin/fragments/template.html :: nav"></ul>
+	<h2 th:text="${title}"></h2>
+	<form th:object="${category}" th:action="@{/admin/category/save}" action="#" method="post">
+		<input type="hidden" id="id" th:field="*{id}" />
+		<div class="form-group">
+			<label for="name">Category name</label>
+			<input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Category name">
+		</div>
+		<div class="form-group">
+			<label for="background_pic">Background URI</label>
+			<input type="text" th:field="*{backgroundPic}" class="form-control" id="background_pic" placeholder="Background URI">
+		</div>
+		<div class="form-group">
+			<label for="submission_type">Submission type</label>
+			<input type="text" th:field="*{submissionType}" class="form-control" id="submission_type" placeholder="Submission type">
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</body>
+</html>

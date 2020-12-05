@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="admin/fragments/template.html :: head">
+</head>
+<body>
+	<div th:insert="admin/fragments/template.html :: userdetails">
+	</div>
+	<h1>TrePerDay</h1>
+	<ul th:insert="admin/fragments/template.html :: nav"></ul>
+	<h2>Tasks</h2>
+    <table class="table table-striped">
+    	<thead>
+			<tr>
+			    <th>id</th>
+			    <th>Category</th>
+			    <th>Name</th>
+			    <th>Description</th>
+			    <th></th>
+			</tr>
+		</thead>
+		<tbody>  
+	    	<tr th:each="task : ${tasks}">
+	    		<td th:text="${task.id}"></td>
+	    		<td th:text="${task.category.name}"></td>
+	    		<td th:text="${task.name}"></td>
+	    		<td th:text="${task.description}"></td>
+	    		<td>
+	    			<a class="btn btn-primary" th:href="@{/admin/task/edit/{id}(id=${task.id})}" role="button">Edit</a>
+	    			<a class="btn btn-danger" th:href="@{/admin/task/delete/{id}(id=${task.id})}" role="button">Delete</a>
+	    		</td>
+	    	</tr>
+    	</tbody>
+     </table>
+     <a class="btn btn-success" th:href="@{/admin/task/create}" role="button">Add a new task</a>
+</body>
+</html>

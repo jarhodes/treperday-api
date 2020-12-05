@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="admin/fragments/template.html :: head">
+</head>
+<body>
+	<div th:insert="admin/fragments/template.html :: userdetails">
+	</div>
+	<h1>TrePerDay</h1>
+	<ul th:insert="admin/fragments/template.html :: nav"></ul>
+	<h2>Categories</h2>
+    <table class="table table-striped">
+    	<thead>
+			<tr>
+			    <th>id</th>
+			    <th>Name</th>
+			    <th>Background URI</th>
+			    <th>Submission type</th>
+			    <th></th>
+			</tr>
+		</thead>
+		<tbody>  
+	    	<tr th:each="category : ${categories}">
+	    		<td th:text="${category.id}"></td>
+	    		<td th:text="${category.name}"></td>
+	    		<td th:text="${category.backgroundPic}"></td>
+	    		<td th:text="${category.submissionType}"></td>
+	    		<td>
+	    			<a class="btn btn-primary" th:href="@{/admin/category/edit/{id}(id=${category.id})}" role="button">Edit</a>
+	    			<a class="btn btn-danger" th:href="@{/admin/category/delete/{id}(id=${category.id})}" role="button">Delete</a>
+	    		</td>
+	    	</tr>
+    	</tbody>
+     </table>
+     <a class="btn btn-success" th:href="@{/admin/category/create}" role="button">Add a new category</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="admin/fragments/template.html :: head">
+</head>
+<body>
+	<div th:insert="admin/fragments/template.html :: userdetails">
+	</div>
+	<h1>TrePerDay</h1>
+	<ul th:insert="admin/fragments/template.html :: nav"></ul>
+	<h2 th:text="${title}"></h2>
+	<p>Are you sure you want to delete this user?</p>
+	<form th:object="${user}" th:action="@{/admin/user/delete}" action="#" method="post">
+		<input type="hidden" id="id" th:field="*{id}" />
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input type="text" th:field="*{username}" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Username" disabled>
+		</div>
+		<button type="submit" class="btn btn-danger">Delete</button>
+	</form>
+</body>
+</html>
