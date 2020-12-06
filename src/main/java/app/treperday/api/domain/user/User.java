@@ -2,6 +2,7 @@ package app.treperday.api.domain.user;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class User {
 	@JsonIgnore
 	private String role = "API_USER";
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonBackReference
 	private Set<Performance> assignedTasks;
 
@@ -174,6 +175,5 @@ public class User {
 		return "User [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", username=" + username
 				+ ", password=" + password + ", role=" + role + ", assignedTasks=" + assignedTasks + "]";
 	}
-
 
 }

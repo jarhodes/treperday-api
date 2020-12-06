@@ -1,8 +1,8 @@
 package app.treperday.api.domain.task;
 
 import java.util.List;
-import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import app.treperday.api.domain.performance.Performance;
@@ -35,7 +34,9 @@ public class Task {
 	
 	private String mapSearchKeyword;
 	
-	@OneToMany(mappedBy = "task")
+	private String helpLink;
+	
+	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonBackReference
 	private List<Performance> assignedTasks;
 	
@@ -62,6 +63,22 @@ public class Task {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public String getHelpLink() {
+		return helpLink;
+	}
+
+	public void setHelpLink(String helpLink) {
+		this.helpLink = helpLink;
+	}
+
+	public List<Performance> getAssignedTasks() {
+		return assignedTasks;
+	}
+
+	public void setAssignedTasks(List<Performance> assignedTasks) {
+		this.assignedTasks = assignedTasks;
 	}
 
 	public String getDescription() {

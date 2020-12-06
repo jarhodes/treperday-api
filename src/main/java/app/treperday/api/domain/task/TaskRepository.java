@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-	@Query(value = "SELECT * FROM Task t ORDER BY RAND() LIMIT 3", nativeQuery = true)
+	@Query(value = "SELECT * FROM task t ORDER BY RAND() LIMIT 3", nativeQuery = true)
 	List<Task> findThreeRandomTasks();
 }

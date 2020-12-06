@@ -15,17 +15,17 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String name;
-	
+
 	private String backgroundPic;
-	
+
 	@JsonBackReference
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="category")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
 	private List<Task> tasks;
-	
+
 	private String submissionType;
 
 	public Category(String name, String backgroundPic, String submissionType) {
@@ -33,8 +33,9 @@ public class Category {
 		this.backgroundPic = backgroundPic;
 		this.submissionType = submissionType;
 	}
-	
-	public Category() {}
+
+	public Category() {
+	}
 
 	public String getSubmissionType() {
 		return submissionType;
@@ -43,7 +44,7 @@ public class Category {
 	public void setSubmissionType(String submissionType) {
 		this.submissionType = submissionType;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -67,7 +68,7 @@ public class Category {
 	public void setBackgroundPic(String backgroundPic) {
 		this.backgroundPic = backgroundPic;
 	}
-	
+
 	public List<Task> getTasks() {
 		return tasks;
 	}
@@ -122,8 +123,5 @@ public class Category {
 		return "Category [id=" + id + ", name=" + name + ", backgroundPic=" + backgroundPic + ", submissionType="
 				+ submissionType + "]";
 	}
-
-
-
 
 }

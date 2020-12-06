@@ -24,6 +24,14 @@
 			<label for="description">Description</label>
 			<textarea class="form-control" id="description" rows="3" th:field="*{description}" placeholder="Description"></textarea>
 		</div>
+		<div class="form-group">
+			<label for="mapSearchKeyword">Map search keyword</label>
+			<input type="text" th:field="*{mapSearchKeyword}" class="form-control" id="mapSearchKeyword" placeholder="Map search keyword">
+		</div>
+		<div class="form-group">
+			<label for="helpLink">Help link</label>
+			<input type="text" th:field="*{helpLink}" class="form-control" id="helpLink" placeholder="Help link">
+		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 </body>

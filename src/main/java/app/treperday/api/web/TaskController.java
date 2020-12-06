@@ -60,11 +60,12 @@ public class TaskController {
 	}
 
 	@PostMapping("/assignthree")
-	public List<Performance> assignThreeTasks(@AuthenticationPrincipal UserDetails principal) {
-		
+	public List<Performance> assignThreeTasks(
+			@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,
+			@AuthenticationPrincipal UserDetails principal) {
+
 		User user = userRepository.findByUsername(principal.getUsername());
-		Date date = new Date();
-		
+
 		List<Task> tasks = taskRepository.findThreeRandomTasks();
 		List<Performance> output = new ArrayList<>();
 		for (Task task : tasks) {
@@ -76,20 +77,20 @@ public class TaskController {
 
 	@GetMapping("/list/taskdates")
 	public List<PerformanceListByDate> listTaskDates(@AuthenticationPrincipal UserDetails principal) {
-		
+
 		User user = userRepository.findByUsername(principal.getUsername());
 		List<Date> dateList = performanceRepository.findUniqueDateByUserId(user.getId());
-		
+
 		List<PerformanceListByDate> output = new ArrayList<>();
-		
+
 		for (Date date : dateList) {
 			PerformanceListByDate performanceList = new PerformanceListByDate(date);
 			performanceList.setList(performanceRepository.findByUserIdAndDate(user.getId(), date));
 			output.add(performanceList);
 		}
-		
+
 		return output;
-		
+
 	}
 
 }

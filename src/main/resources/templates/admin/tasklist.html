@@ -8,6 +8,7 @@
 	<h1>TrePerDay</h1>
 	<ul th:insert="admin/fragments/template.html :: nav"></ul>
 	<h2>Tasks</h2>
+	<a class="btn btn-success" th:href="@{/admin/task/create}" role="button">Add a new task</a>
     <table class="table table-striped">
     	<thead>
 			<tr>
@@ -15,6 +16,7 @@
 			    <th>Category</th>
 			    <th>Name</th>
 			    <th>Description</th>
+			    <th>Map search keyword</th>
 			    <th></th>
 			</tr>
 		</thead>
@@ -24,6 +26,7 @@
 	    		<td th:text="${task.category.name}"></td>
 	    		<td th:text="${task.name}"></td>
 	    		<td th:text="${task.description}"></td>
+	    		<td th:text="${task.mapSearchKeyword}"></td>
 	    		<td>
 	    			<a class="btn btn-primary" th:href="@{/admin/task/edit/{id}(id=${task.id})}" role="button">Edit</a>
 	    			<a class="btn btn-danger" th:href="@{/admin/task/delete/{id}(id=${task.id})}" role="button">Delete</a>

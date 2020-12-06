@@ -3,8 +3,6 @@ package app.treperday.api.domain.task;
 import java.sql.Date;
 
 import javax.persistence.Basic;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 public class TaskDate {
 

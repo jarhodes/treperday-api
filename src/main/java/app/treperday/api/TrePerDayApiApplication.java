@@ -18,7 +18,6 @@ import app.treperday.api.domain.task.CategoryRepository;
 import app.treperday.api.domain.task.TaskRepository;
 import app.treperday.api.domain.user.RandomPasswordGenerator;
 import app.treperday.api.domain.user.User;
-import app.treperday.api.domain.user.UserDetailsServiceImpl;
 import app.treperday.api.domain.user.UserRepository;
 
 @SpringBootApplication
