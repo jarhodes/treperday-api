@@ -110,7 +110,9 @@ public class Task {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((helpLink == null) ? 0 : helpLink.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((mapSearchKeyword == null) ? 0 : mapSearchKeyword.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -127,10 +129,20 @@ public class Task {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
+		if (helpLink == null) {
+			if (other.helpLink != null)
+				return false;
+		} else if (!helpLink.equals(other.helpLink))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (mapSearchKeyword == null) {
+			if (other.mapSearchKeyword != null)
+				return false;
+		} else if (!mapSearchKeyword.equals(other.mapSearchKeyword))
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -142,8 +154,9 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", name=" + name + ", description=" + description + "]";
+		return "Task [id=" + id + ", category=" + category + ", name=" + name + ", description=" + description
+				+ ", mapSearchKeyword=" + mapSearchKeyword + ", helpLink=" + helpLink + ", assignedTasks="
+				+ assignedTasks + "]";
 	}
-
 	
 }

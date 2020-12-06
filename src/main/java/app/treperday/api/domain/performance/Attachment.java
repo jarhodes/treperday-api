@@ -13,20 +13,20 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Attachment {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="performance_id")
+	@JoinColumn(name = "performance_id")
 	@JsonManagedReference
 	private Performance performance;
-	
+
 	private String uri;
-	
+
 	private String type;
-	
+
 	private String fetchToken;
-	
+
 	public Attachment(Performance performance, String uri, String type, String fetchToken) {
 		this.performance = performance;
 		this.uri = uri;
@@ -34,7 +34,8 @@ public class Attachment {
 		this.fetchToken = fetchToken;
 	}
 
-	public Attachment() {}
+	public Attachment() {
+	}
 
 	public Long getId() {
 		return id;
@@ -121,5 +122,5 @@ public class Attachment {
 	public String toString() {
 		return "Attachment [id=" + id + ", uri=" + uri + ", type=" + type + ", fetchToken=" + fetchToken + "]";
 	}
-	
+
 }

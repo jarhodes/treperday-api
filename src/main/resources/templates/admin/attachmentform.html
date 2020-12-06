@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="admin/fragments/template.html :: head">
+</head>
+<body>
+	<div th:insert="admin/fragments/template.html :: userdetails">
+	</div>
+	<h1>TrePerDay</h1>
+	<ul th:insert="admin/fragments/template.html :: nav"></ul>
+	<h2 th:text="${title}"></h2>
+	<form th:object="${attachment}" th:action="@{/admin/attachment/save}" action="#" method="post">
+		<input type="hidden" id="id" th:field="*{id}" />
+		<div class="form-group">
+			<label for="category">User</label>
+			<select class="form-control" th:field="*{performance.user}" id="user_list">
+				<option th:each="user: ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+			</select>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</body>
+</html>

@@ -25,7 +25,6 @@
 	    		<td th:text="${performance.task.description}"></td>
 	    		<td th:text="${performance.performanceText}"></td>
 	    		<td>
-	    			<a class="btn btn-primary" th:href="@{/admin/performance/edit/{id}(id=${performance.id})}" role="button">Edit</a>
 	    			<a class="btn btn-danger" th:href="@{/admin/performance/delete/{id}(id=${performance.id})}" role="button">Delete</a>
 	    		</td>
 	    	</tr>

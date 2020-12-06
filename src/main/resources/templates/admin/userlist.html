@@ -28,7 +28,6 @@
 	    		<td th:text="${user.role}"></td>
 	    		<td>
 	    			<a class="btn btn-primary" th:href="@{/admin/user/edit/{id}(id=${user.id})}" role="button">Edit</a>
-	    			<a class="btn btn-primary" th:href="@{/admin/user/resetPassword/{id}(id=${user.id})}" role="button">Reset password</a>
 	    			<a class="btn btn-danger" th:href="@{/admin/user/delete/{id}(id=${user.id})}" role="button">Delete</a>
 	    		</td>
 	    	</tr>

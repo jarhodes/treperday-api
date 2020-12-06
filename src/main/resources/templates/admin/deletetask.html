@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="admin/fragments/template.html :: head">
+</head>
+<body>
+	<div th:insert="admin/fragments/template.html :: userdetails">
+	</div>
+	<h1>TrePerDay</h1>
+	<h2 th:text="${title}"></h2>
+	<p>Are you sure you want to delete this task?</p>
+	<form th:object="${task}" th:action="@{/admin/task/delete}" action="#" method="post">
+		<input type="hidden" id="id" th:field="*{id}" />
+		<div class="form-group">
+			<label for="name">Name</label>
+			<input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" disabled>
+		</div>
+		<button type="submit" class="btn btn-danger">Delete</button>
+	</form>
+</body>
+</html>

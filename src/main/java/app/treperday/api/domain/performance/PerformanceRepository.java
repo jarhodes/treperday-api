@@ -16,7 +16,7 @@ public interface PerformanceRepository extends JpaRepository<Performance, Long> 
 	
 	List<Performance> findByUserIdOrderByDateDesc(Long userId);
 	
-	@Query(value = "SELECT UNIQUE(p.date) FROM performance p WHERE p.user_id = ?1 ORDER BY p.date DESC", nativeQuery = true)
+	@Query(value = "SELECT DISTINCT(p.date) FROM performance p WHERE p.user_id = ?1 ORDER BY p.date DESC", nativeQuery = true)
 	List<Date> findUniqueDateByUserId(Long userId);
 
 }

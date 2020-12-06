@@ -41,15 +41,16 @@ public class TrePerDayApiApplication {
 			LocationRepository locationRepository) {
 		return (args) -> {
 			User adminUser = userRepository.findByUsername("jonathan");
-			if (adminUser == null) {
-				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-				RandomPasswordGenerator generator = new RandomPasswordGenerator();
-				String password = generator.getRandomPassword();
-				String hashedPassword = passwordEncoder.encode(password);
-				User newAdminUser = new User("Rhodes", "Jonathan", "jonathan", hashedPassword, "ADMIN");
-				userRepository.save(newAdminUser);
-				log.info("Started with admin password " + password);
+			if (adminUser != null) {
+				userRepository.delete(adminUser);
 			}
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			RandomPasswordGenerator generator = new RandomPasswordGenerator();
+			String password = generator.getRandomPassword();
+			String hashedPassword = passwordEncoder.encode(password);
+			User newAdminUser = new User("Rhodes", "Jonathan", "jonathan", hashedPassword, "ADMIN");
+			userRepository.save(newAdminUser);
+			log.info("Started with admin password " + password);
 
 			log.info("Database initiated");
 		};

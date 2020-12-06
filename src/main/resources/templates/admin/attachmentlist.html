@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="admin/fragments/template.html :: head">
+</head>
+<body>
+	<div th:insert="admin/fragments/template.html :: userdetails">
+	</div>
+	<h1>TrePerDay</h1>
+	<ul th:insert="admin/fragments/template.html :: nav"></ul>
+	<h2>Attachments</h2>
+    <table class="table table-striped">
+    	<thead>
+			<tr>
+			    <th>id</th>
+			    <th>Performance</th>
+			    <th>Type</th>
+			    <th>Open</th>
+			    <th></th>
+			</tr>
+		</thead>
+		<tbody>  
+	    	<tr th:each="attachment : ${attachments}">
+	    		<td th:text="${attachment.id}"></td>
+	    		<td th:text="${attachment.performance.task.name}"></td>
+	    		<td th:text="${attachment.type}"></td>
+	    		<td>
+	    			<a class="btn btn-primary" th:href="@{/admin/attachment/getwithtoken/{id}/{token}(id=${attachment.id},token=${attachment.fetchToken})}" role="button">Open</a>
+	    		</td>
+	    		<td>
+	    			<a class="btn btn-danger" th:href="@{/admin/attachment/delete/{id}(id=${attachment.id})}" role="button">Delete</a>
+	    		</td>
+	    	</tr>
+    	</tbody>
+     </table>
+</body>
+</html>

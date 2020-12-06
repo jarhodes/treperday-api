@@ -1,6 +1,7 @@
 package app.treperday.api.domain.performance;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import app.treperday.api.domain.task.Task;
 import app.treperday.api.domain.user.User;
@@ -31,7 +35,15 @@ public class Performance {
 	private Task task;
 
 	private String performanceText;
-
+	
+	@OneToMany(mappedBy = "performance", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonBackReference
+	private Set<Attachment> attachments;
+	
+	@OneToMany(mappedBy = "performance", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonBackReference
+	private Set<Location> locations;
+	
 	@Temporal(TemporalType.DATE)
 	private Date date;
 

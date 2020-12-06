@@ -86,7 +86,7 @@ public class AttachmentController {
 			Region region = Region.EU_NORTH_1;
 			S3Client s3 = S3Client.builder().region(region).build();
 
-			String bucket = "jonathan3decembertest";
+			String bucket = "elasticbeanstalk-eu-north-1-932572781623";
 
 			s3.putObject(PutObjectRequest.builder().bucket(bucket).key(fetchToken).build(), imagePath);
 
@@ -164,7 +164,7 @@ public class AttachmentController {
 
 		Region region = Region.EU_NORTH_1;
 		S3Client s3 = S3Client.builder().region(region).build();
-		String bucket = "jonathan3decembertest";
+		String bucket = "elasticbeanstalk-eu-north-1-932572781623";
 
 		return s3.getObjectAsBytes(GetObjectRequest.builder().bucket(bucket).key(attachment.getFetchToken()).build())
 				.asByteArray();
@@ -206,7 +206,7 @@ public class AttachmentController {
 
 			Region region = Region.EU_NORTH_1;
 			S3Client s3 = S3Client.builder().region(region).build();
-			String bucket = "jonathan3decembertest";
+			String bucket = "elasticbeanstalk-eu-north-1-932572781623";
 			DeleteObjectResponse response = s3
 					.deleteObject(DeleteObjectRequest.builder().bucket(bucket).key(attachment.getFetchToken()).build());
 

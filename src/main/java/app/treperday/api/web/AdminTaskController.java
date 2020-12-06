@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
+import app.treperday.api.domain.task.Category;
 import app.treperday.api.domain.task.CategoryRepository;
 import app.treperday.api.domain.task.Task;
 import app.treperday.api.domain.task.TaskRepository;
@@ -53,4 +54,17 @@ public class AdminTaskController {
 		return "admin/taskform";
 	}
 	
+	@GetMapping("/delete/{id}")
+	public String deleteTask(@PathVariable("id") Long id, Model model) {
+		Task task = taskRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid task id " + id));
+		model.addAttribute("task", task);
+		model.addAttribute("title", "Delete task");
+		return "admin/deletetask";
+	}
+	
+	@PostMapping("/delete")
+	public String deleteTaskConfirmed(Task task, Model model) {
+		taskRepository.delete(task);
+		return "redirect:/admin/task";
+	}
 }

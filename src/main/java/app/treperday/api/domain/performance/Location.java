@@ -19,7 +19,7 @@ public class Location {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name="performance_id")
+	@JoinColumn(name = "performance_id")
 	@JsonManagedReference
 	private Performance performance;
 
