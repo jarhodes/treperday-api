@@ -35,6 +35,7 @@ import app.treperday.api.domain.performance.Performance;
 import app.treperday.api.domain.performance.PerformanceRepository;
 import app.treperday.api.domain.user.User;
 import app.treperday.api.domain.user.UserRepository;
+import software.amazon.awssdk.auth.credentials.AwsCredentials;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
@@ -86,8 +87,9 @@ public class AttachmentController {
 			Region region = Region.EU_NORTH_1;
 			S3Client s3 = S3Client.builder().region(region).build();
 
-			String bucket = "elasticbeanstalk-eu-north-1-932572781623";
-
+			//String bucket = "elasticbeanstalk-eu-north-1-932572781623";
+			String bucket = "jonathan3decembertest";
+			
 			s3.putObject(PutObjectRequest.builder().bucket(bucket).key(fetchToken).build(), imagePath);
 
 			Attachment attachment = new Attachment(performance, imagePath.toString(), "photo", fetchToken);
@@ -164,7 +166,8 @@ public class AttachmentController {
 
 		Region region = Region.EU_NORTH_1;
 		S3Client s3 = S3Client.builder().region(region).build();
-		String bucket = "elasticbeanstalk-eu-north-1-932572781623";
+		//String bucket = "elasticbeanstalk-eu-north-1-932572781623";
+		String bucket = "jonathan3decembertest";
 
 		return s3.getObjectAsBytes(GetObjectRequest.builder().bucket(bucket).key(attachment.getFetchToken()).build())
 				.asByteArray();

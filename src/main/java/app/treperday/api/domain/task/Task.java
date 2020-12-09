@@ -36,7 +36,7 @@ public class Task {
 	
 	private String helpLink;
 	
-	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "task")
 	@JsonBackReference
 	private List<Performance> assignedTasks;
 	
@@ -109,6 +109,7 @@ public class Task {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((helpLink == null) ? 0 : helpLink.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -124,6 +125,11 @@ public class Task {
 		if (!(obj instanceof Task))
 			return false;
 		Task other = (Task) obj;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
+			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -155,8 +161,9 @@ public class Task {
 	@Override
 	public String toString() {
 		return "Task [id=" + id + ", category=" + category + ", name=" + name + ", description=" + description
-				+ ", mapSearchKeyword=" + mapSearchKeyword + ", helpLink=" + helpLink + ", assignedTasks="
-				+ assignedTasks + "]";
+				+ ", mapSearchKeyword=" + mapSearchKeyword + ", helpLink=" + helpLink + "]";
 	}
+
+	
 	
 }

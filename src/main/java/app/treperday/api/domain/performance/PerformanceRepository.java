@@ -43,8 +43,8 @@ public interface PerformanceRepository extends JpaRepository<Performance, Long> 
 
 	@Query(value = "SELECT COUNT(p.id) "
 			+ "FROM performance p "
-			+ "WHERE p.user_id = ?1 AND YEARWEEK(p.date) = ?2 AND is_completed = '1'"
-			+ "GROUP BY YEARWEEK(p.date)", nativeQuery = true)
-	Optional<Integer> findCompletedByYearWeek(Long userId, String yearWeek);
+			+ "WHERE p.user_id = ?1 AND YEAR(p.date) = ?2 AND WEEKOFYEAR(p.date) = ?3 AND is_completed = '1'"
+			+ "GROUP BY WEEKOFYEAR(p.date)", nativeQuery = true)
+	Optional<Integer> findCompletedByYearWeek(Long userId, int year, int weekNo);
 	
 }

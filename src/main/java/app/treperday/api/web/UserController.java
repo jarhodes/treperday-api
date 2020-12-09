@@ -157,9 +157,7 @@ public class UserController {
 			int weekNum = i.get(woy);
 			tasksInWeek.setYear(year);
 			tasksInWeek.setWeekNum(weekNum);
-			String yearWeek = "" + i.getYear() + i.get(woy);
-			System.out.println("Yearweek is "+yearWeek);
-			Integer numDone = performanceRepository.findCompletedByYearWeek(user.getId(), yearWeek).orElse(0);
+			Integer numDone = performanceRepository.findCompletedByYearWeek(user.getId(), i.getYear(), i.get(woy)).orElse(0);
 			tasksInWeek.setNumCompleted(numDone);
 			taskWeeks.add(tasksInWeek);
 		}
