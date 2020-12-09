@@ -48,7 +48,7 @@ public class TrePerDayApiApplication {
 			RandomPasswordGenerator generator = new RandomPasswordGenerator();
 			String password = generator.getRandomPassword();
 			String hashedPassword = passwordEncoder.encode(password);
-			User newAdminUser = new User("Rhodes", "Jonathan", "jonathan", hashedPassword, "ADMIN");
+			User newAdminUser = new User("Rhodes", "Jonathan", "jonathan", hashedPassword, "ADMIN", null, "#555");
 			userRepository.save(newAdminUser);
 			log.info("Started with admin password " + password);
 

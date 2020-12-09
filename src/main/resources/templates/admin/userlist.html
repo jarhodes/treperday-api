@@ -16,6 +16,8 @@
 			    <th>First name</th>
 			    <th>Username</th>
 			    <th>Role</th>
+			    <th>Avatar icon</th>
+			    <th>Created</th>
 			    <th></th>
 			</tr>
 		</thead>
@@ -26,6 +28,8 @@
 	    		<td th:text="${user.firstName}"></td>
 	    		<td th:text="${user.username}"></td>
 	    		<td th:text="${user.role}"></td>
+	    		<td th:text="${user.avatarIcon}"></td>
+	    		<td th:text="${user.created}"></td>
 	    		<td>
 	    			<a class="btn btn-primary" th:href="@{/admin/user/edit/{id}(id=${user.id})}" role="button">Edit</a>
 	    			<a class="btn btn-danger" th:href="@{/admin/user/delete/{id}(id=${user.id})}" role="button">Delete</a>

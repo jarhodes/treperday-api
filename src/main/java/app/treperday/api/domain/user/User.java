@@ -1,5 +1,6 @@
 package app.treperday.api.domain.user;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -28,7 +29,6 @@ public class User {
 
 	private String firstName;
 
-	// DeviceInfo.getUniqueId() as supplied by react-native-device-info
 	@Column(nullable = false, unique = true)
 	private String username;
 
@@ -40,19 +40,37 @@ public class User {
 	@JsonIgnore
 	private String role = "API_USER";
 
+	private String avatarIcon;
+
+	private String avatarColour;
+
+	private Date created;
+
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonBackReference
 	private Set<Performance> assignedTasks;
 
-	public User(String lastName, String firstName, String username, String password, String role) {
+	public User(String lastName, String firstName, String username, String password, String role, String avatarIcon,
+			String avatarColour) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.username = username;
 		this.password = password;
 		this.role = role;
+		this.avatarIcon = avatarIcon;
+		this.avatarColour = avatarColour;
+		this.created = new Date();
 	}
 
 	public User() {
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	public Long getId() {
@@ -111,11 +129,29 @@ public class User {
 		this.assignedTasks = assignedTasks;
 	}
 
+	public String getAvatarIcon() {
+		return avatarIcon;
+	}
+
+	public void setAvatarIcon(String avatarIcon) {
+		this.avatarIcon = avatarIcon;
+	}
+
+	public String getAvatarColour() {
+		return avatarColour;
+	}
+
+	public void setAvatarColour(String avatarColour) {
+		this.avatarColour = avatarColour;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((assignedTasks == null) ? 0 : assignedTasks.hashCode());
+		result = prime * result + ((avatarColour == null) ? 0 : avatarColour.hashCode());
+		result = prime * result + ((avatarIcon == null) ? 0 : avatarIcon.hashCode());
+		result = prime * result + ((created == null) ? 0 : created.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
@@ -132,10 +168,20 @@ public class User {
 		if (!(obj instanceof User))
 			return false;
 		User other = (User) obj;
-		if (assignedTasks == null) {
-			if (other.assignedTasks != null)
+		if (avatarColour == null) {
+			if (other.avatarColour != null)
 				return false;
-		} else if (!assignedTasks.equals(other.assignedTasks))
+		} else if (!avatarColour.equals(other.avatarColour))
+			return false;
+		if (avatarIcon == null) {
+			if (other.avatarIcon != null)
+				return false;
+		} else if (!avatarIcon.equals(other.avatarIcon))
+			return false;
+		if (created == null) {
+			if (other.created != null)
+				return false;
+		} else if (!created.equals(other.created))
 			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
@@ -173,7 +219,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", username=" + username
-				+ ", password=" + password + ", role=" + role + ", assignedTasks=" + assignedTasks + "]";
+				+ ", password=" + password + ", role=" + role + ", avatarIcon=" + avatarIcon + ", avatarColour="
+				+ avatarColour + ", created=" + created + "]";
 	}
 
 }

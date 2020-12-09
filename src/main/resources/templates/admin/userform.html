@@ -33,6 +33,14 @@
 				<option value="ADMIN">Admin</option>
 			</select>
 		</div>
+		<div class="form-group">
+			<label for="avatarIcon">Avatar icon</label>
+			<input type="text" th:field="*{avatarIcon}" class="form-control" id="avatarIcon" placeholder="Avatar icon">
+		</div>
+		<div class="form-group">
+			<label for="avatarIcon">Avatar colour</label>
+			<input type="text" th:field="*{avatarColour}" class="form-control" id="avatarColour" placeholder="Avatar colour">
+		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 </body>
