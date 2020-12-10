@@ -27,7 +27,7 @@ public interface PerformanceRepository extends JpaRepository<Performance, Long> 
 	@Query(value = "SELECT COUNT(*) max_streak "
 			+ "FROM ( SELECT x.*, CASE WHEN @prev=x.date - INTERVAL 1 DAY THEN @i \\:= @i ELSE @i \\:= @i+1 END i, "
 			+ "@prev \\:= x.date "
-			+ "FROM ( SELECT DISTINCT p.date FROM performance p WHERE p.user_id = ?1 ) x "
+			+ "FROM ( SELECT DISTINCT p.date FROM performance p WHERE p.user_id = ?1 AND p.is_completed = '1' ) x "
 			+ "JOIN ( SELECT @prev \\:= null, @i \\:= 0 ) vars "
 			+ "ORDER BY date ) a "
 			+ "GROUP BY i "
